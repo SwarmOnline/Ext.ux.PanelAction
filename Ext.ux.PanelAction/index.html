@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
+        <link rel="stylesheet" href="../libraries/SenchaTouch1.0/resources/css/sencha-touch.css" type="text/css">
+        <title>Ext.ux.PanelAction</title>
+        <script type="text/javascript" src="../libraries/SenchaTouch1.0/sencha-touch.js">
+        </script>
+        <link rel="stylesheet" href="css/Ext.ux.PanelAction.css" type="text/css">
+        <script type="text/javascript" src="Ext.ux.PanelAction.js">
+        </script>
+        <script type="text/javascript">
+            
+            Ext.setup({
+                tabletStartupScreen: 'tablet_startup.png',
+                phoneStartupScreen: 'phone_startup.png',
+                icon: 'icon.png',
+                glossOnIcon: false,
+                onReady: function(){
+                Ext.ns('GA');
+				
+                    GA.sidebarall = Ext.extend(Ext.Panel, {
+                        floating: true,
+                        centered: true,
+                        modal: true,
+                        scroll: 'vertical',
+                        floatingCls: 'ga-floating',
+                        width: 560,
+                        height: 540,
+                        data: {title: 'TEST TITLE', body: 'TEST BODY'},
+                        cls: 'sidebarpop',
+                        layout: 'fit',
+                        tpl: ['{title}', '', '{body}'],
+                        plugins: [new Ext.ux.PanelAction({
+                            position: 'tr',
+                            actionMethod: ['hide']
+                        })]
+                    });
+					
+					var panel = new GA.sidebarall();
+					
+					panel.show();
+					
+					setTimeout(function(){
+						panel.hide();
+						
+						setTimeout(function(){
+							panel.show();
+						}, 4000);
+					}, 4000);
+                    
+                }
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
